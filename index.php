@@ -1,5 +1,15 @@
 <?php
 
+namespace main;
+
+use Main\Model\Garage;
+
+require_once './config.php';
+
+$garage = new Garage();
+$garage->demonstrateAll();
+
+
 class Vehicle
 {
     public $name;
@@ -82,4 +92,5 @@ foreach ($vehicles as $vehicle) {
     }
     $vehicle->stop();
     $vehicle->refuel('gas');
+    echo "\r\n";
 }
