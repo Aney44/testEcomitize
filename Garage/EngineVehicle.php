@@ -1,6 +1,6 @@
 <?php
 
-namespace Main\Model;
+namespace Garage;
 
 abstract class EngineVehicle
 {
@@ -8,7 +8,7 @@ abstract class EngineVehicle
 
     public function move()
     {
-        $this->showAction('move');
+        $this->showAction('moving');
     }
 
     protected function showAction($action)

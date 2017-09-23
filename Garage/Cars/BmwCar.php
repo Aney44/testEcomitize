@@ -1,8 +1,8 @@
 <?php
 
-namespace Main\Model\Cars;
+namespace Garage\Cars;
 
-use Main\Model\EngineVehicle;
+use Garage\EngineVehicle;
 
 class BmwCar extends EngineVehicle
 {
