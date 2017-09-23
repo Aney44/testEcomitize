@@ -1,5 +1,7 @@
 <?php
-
+if (!defined('EOL')) {
+    define('EOL', "\r\n");
+}
 return [
     'namespace' => [
         'bmw' => 'Garage\Cars\BmwCar',
@@ -7,6 +9,10 @@ return [
         'harley-davidson' => 'Garage\Bikes\HarleyDavidsonBike',
     ],
     'params' => [
-        'bmw' => []
+        'create' => [
+            'bmw' => [
+                'radio' => 'Garage\Common\FmRadio'
+            ]
+        ]
     ]
 ];

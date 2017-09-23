@@ -16,14 +16,23 @@ class Garage
 
     public function get($vehicleName, $params = [])
     {
+        if (!$this->hasVechicle($vehicleName)) {
+            throw  new NoVechicleException();
+        }
+
         $vehicle = $this->getNamespace($vehicleName);
+        $paramsDefault = $this->getCreateParams($vehicleName);
+        $params = array_merge($paramsDefault, $params);
+
         return new $vehicle($params);
     }
 
     public function demonstrateAll()
     {
-        $vehicleNames = ['bmw', 'kamaz', 'harley-davidson'];
+        $vehicleNames = $this->getExistedVehicles();
         foreach ($vehicleNames as $vehicleName) {
+
+
             $vehicle = $this->get($vehicleName);
             $documentation = $vehicle->readDocumentation();
             array_walk($documentation, function ($action) use ($vehicle) {
@@ -32,12 +41,24 @@ class Garage
         }
     }
 
-    private function getNamespace($vihicleName)
+    private function getExistedVehicles()
     {
-        if (isset($this->config['namespace'][$vihicleName])) {
-            return $this->config['namespace'][$vihicleName];
-        }
-        throw  new NoVechicleException();
+        return array_keys($this->config['namespace']);
+    }
 
+    private function getCreateParams($vehicleName)
+    {
+        $params = $this->config['params']['create'][$vehicleName];
+        return isset($params) ? $params : [];
+    }
+
+    private function getNamespace($vehicleName)
+    {
+        return $this->config['namespace'][$vehicleName];
+    }
+
+    private function hasVechicle($vehicleName)
+    {
+        return isset($this->config['namespace'][$vehicleName]);
     }
 }

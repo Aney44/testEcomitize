@@ -10,6 +10,6 @@ class KamazCar extends EngineVehicle
 
     public function readDocumentation()
     {
-        return ['move'];
+        return ['move', 'refuel'];
     }
 }
