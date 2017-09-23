@@ -11,11 +11,6 @@ class BmwCar extends EngineVehicle implements RadioInterface
     /* @var  RadioInterface $radio */
     protected $radio = '';
 
-    public function __construct(array $params = [])
-    {
-        parent::__construct($params);
-    }
-
     public function setRadio($radio)
     {
         $this->radio = new $radio();

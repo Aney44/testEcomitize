@@ -31,12 +31,15 @@ class Garage
     {
         $vehicleNames = $this->getExistedVehicles();
         foreach ($vehicleNames as $vehicleName) {
-
-
             $vehicle = $this->get($vehicleName);
             $documentation = $vehicle->readDocumentation();
-            array_walk($documentation, function ($action) use ($vehicle) {
-                $vehicle->$action();
+            $params = $this->getDemonstrateParams($vehicleName);
+            array_walk($documentation, function ($action) use ($vehicle, $params) {
+                if (isset($params[$action])) {
+                    $vehicle->$action($params[$action]);
+                } else {
+                    $vehicle->$action();
+                }
             });
         }
     }
@@ -44,6 +47,12 @@ class Garage
     private function getExistedVehicles()
     {
         return array_keys($this->config['namespace']);
+    }
+
+    private function getDemonstrateParams($vehicleName)
+    {
+        $params = $this->config['params']['demonstrate'][$vehicleName];
+        return isset($params) ? $params : [];
     }
 
     private function getCreateParams($vehicleName)

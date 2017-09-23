@@ -1,4 +1,7 @@
 <?php
+
+use Garage\Interfaces\FuelInterface;
+
 if (!defined('EOL')) {
     define('EOL', "\r\n");
 }
@@ -12,6 +15,14 @@ return [
         'create' => [
             'bmw' => [
                 'radio' => 'Garage\Common\FmRadio'
+            ]
+        ],
+        'demonstrate' => [
+            'kamaz' => [
+                'refuel' => FuelInterface::DIESEL_FUEL
+            ],
+            'harley-davidson' => [
+                'refuel' => FuelInterface::PETROL_FUEL
             ]
         ]
     ]
