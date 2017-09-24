@@ -16,7 +16,7 @@ class Garage
 
     public function get($vehicleName, $params = [])
     {
-        if (!$this->hasVechicle($vehicleName)) {
+        if (!$this->hasVehicle($vehicleName)) {
             throw  new NoVechicleException();
         }
 
@@ -66,7 +66,7 @@ class Garage
         return $this->config['namespace'][$vehicleName];
     }
 
-    private function hasVechicle($vehicleName)
+    private function hasVehicle($vehicleName)
     {
         return isset($this->config['namespace'][$vehicleName]);
     }

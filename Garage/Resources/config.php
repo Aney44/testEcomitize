@@ -10,6 +10,8 @@ return [
         'bmw' => 'Garage\Cars\BmwCar',
         'kamaz' => 'Garage\Cars\KamazCar',
         'harley-davidson' => 'Garage\Bikes\HarleyDavidsonBike',
+        'boat' => 'Garage\Boats\Boat',
+        'helicopter' => 'Garage\Helicopters\Helicopter',
     ],
     'params' => [
         'create' => [
