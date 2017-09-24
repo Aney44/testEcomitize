@@ -2,7 +2,7 @@
 
 namespace Garage;
 
-use Garage\Exceptions\NoVechicleException;
+use Garage\Exceptions\NoVehicleException;
 
 class Garage
 {
@@ -17,7 +17,7 @@ class Garage
     public function get($vehicleName, $params = [])
     {
         if (!$this->hasVehicle($vehicleName)) {
-            throw  new NoVechicleException();
+            throw  new NoVehicleException();
         }
 
         $vehicle = $this->getNamespace($vehicleName);
@@ -49,24 +49,24 @@ class Garage
         return array_keys($this->config['namespace']);
     }
 
-    private function getDemonstrateParams($vehicleName)
+    private function getDemonstrateParams(string $vehicleName)
     {
         $params = $this->config['params']['demonstrate'][$vehicleName];
         return isset($params) ? $params : [];
     }
 
-    private function getCreateParams($vehicleName)
+    private function getCreateParams(string $vehicleName)
     {
         $params = $this->config['params']['create'][$vehicleName];
         return isset($params) ? $params : [];
     }
 
-    private function getNamespace($vehicleName)
+    private function getNamespace(string $vehicleName)
     {
         return $this->config['namespace'][$vehicleName];
     }
 
-    private function hasVehicle($vehicleName)
+    private function hasVehicle(string $vehicleName)
     {
         return isset($this->config['namespace'][$vehicleName]);
     }

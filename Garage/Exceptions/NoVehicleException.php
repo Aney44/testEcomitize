@@ -2,7 +2,7 @@
 
 namespace Garage\Exceptions;
 
-class NoVechicleException extends \Exception
+class NoVehicleException extends \Exception
 {
     protected $message = 'vechicle was stolen';
     protected $code = 500;
