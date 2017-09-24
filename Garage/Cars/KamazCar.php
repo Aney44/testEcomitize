@@ -2,7 +2,7 @@
 
 namespace Garage\Cars;
 
-use Garage\EngineVehicle;
+use Garage\Common\EngineVehicle;
 use Garage\Exceptions\NoLoadsExceptions;
 
 class KamazCar extends EngineVehicle
@@ -10,35 +10,44 @@ class KamazCar extends EngineVehicle
     protected $name = 'kamaz';
     protected $hasLoads = false;
 
-    public function readDocumentation()
+    /**
+     * @return array
+     */
+    public function getDocumentation(): array
     {
         return ['move', 'putLoads', 'emptyLoads', 'refuel'];
     }
 
-    public function putLoads()
+    public function putLoads(): void
     {
         $this->setHasLoads(true);
-        $this->showAction('putLoads');
+        $this->showAction('put Loads');
     }
 
-    public function emptyLoads()
+    /**
+     * @throws NoLoadsExceptions
+     */
+    public function emptyLoads(): void
     {
         if (!$this->isHasLoads()) {
             throw new NoLoadsExceptions();
         }
-        $this->showAction('emptyLoads');
+        $this->showAction('empty Loads');
         $this->setHasLoads(false);
     }
 
     /**
      * @return bool
      */
-    public function isHasLoads()
+    public function isHasLoads(): bool
     {
         return $this->hasLoads;
     }
 
-    public function setHasLoads($hasLoads)
+    /**
+     * @param $hasLoads
+     */
+    public function setHasLoads($hasLoads): void
     {
         $this->hasLoads = $hasLoads;
     }

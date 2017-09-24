@@ -2,13 +2,16 @@
 
 namespace Garage\Bikes;
 
-use Garage\EngineVehicle;
+use Garage\Common\EngineVehicle;
 
 class HarleyDavidsonBike extends EngineVehicle
 {
     protected $name = 'harley-davidson';
 
-    public function readDocumentation()
+    /**
+     * @return array
+     */
+    public function getDocumentation(): array
     {
         return ['move', 'refuel'];
     }

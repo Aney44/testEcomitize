@@ -2,27 +2,52 @@
 
 namespace Garage\Cars;
 
-use Garage\EngineVehicle;
+use Garage\Common\EngineVehicle;
+use Garage\Exceptions\NotRadioException;
 use Garage\Interfaces\RadioInterface;
 
 class BmwCar extends EngineVehicle implements RadioInterface
 {
-    protected $name = 'bmv';
-    /* @var  RadioInterface $radio */
-    protected $radio = '';
+    /** @var string */
+    protected $name = 'bmw';
+    /* @var  RadioInterface */
+    protected $radio;
 
-    public function setRadio($radio)
+    /**
+     * set radio class from object or create new instance from class
+     * @param object|string $radio
+     * @throws NotRadioException
+     */
+    public function setRadio($radio): void
     {
-        $this->radio = new $radio();
+        if (is_object($radio)) {
+            $this->radio = $radio;
+        } else {
+            if (class_exists($radio)) {
+                $this->radio = new $radio();
+            }
+        }
+        if (!($this->radio instanceof RadioInterface)) {
+            throw new NotRadioException();
+        }
     }
 
-    public function readDocumentation()
+    /**
+     * return available actions
+     * @return array
+     */
+    public function getDocumentation(): array
     {
         return ['move', 'musicOn', 'refuel'];
     }
 
-    public function musicOn()
+    /**
+     * turn on radio
+     */
+    public function musicOn(): void
     {
-        $this->radio->musicOn();
+        if (is_object($this->radio)) {
+            $this->radio->musicOn();
+        }
     }
 }

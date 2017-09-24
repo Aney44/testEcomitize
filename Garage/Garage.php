@@ -32,7 +32,7 @@ class Garage
         $vehicleNames = $this->getExistedVehicles();
         foreach ($vehicleNames as $vehicleName) {
             $vehicle = $this->get($vehicleName);
-            $documentation = $vehicle->readDocumentation();
+            $documentation = $vehicle->getDocumentation();
             $params = $this->getDemonstrateParams($vehicleName);
             array_walk($documentation, function ($action) use ($vehicle, $params) {
                 if (isset($params[$action])) {

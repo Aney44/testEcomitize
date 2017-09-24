@@ -6,8 +6,11 @@ use Garage\Interfaces\RadioInterface;
 
 class FmRadio implements RadioInterface
 {
-    public function musicOn()
+    /**
+     * inform that radio is turned on
+     */
+    public function musicOn(): void
     {
-        echo ' music switched on ' . EOL;
+        echo '    music switched on ' . EOL;
     }
 }
